@@ -16,14 +16,17 @@ export default function LpuLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen grain-overlay">
       <header className="sticky top-0 z-40 border-b border-amber-500/15 bg-black/40 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-4 py-4">
           <div className="flex items-center gap-4">
-            <Link href="/" className="font-display text-xl text-amber-100">
-              AI Mentor
+            <Link href="/" className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-amber-500/40 bg-amber-500/10 text-amber-200">
+                <span className="font-display text-lg">AM</span>
+              </div>
+              <div className="leading-tight">
+                <p className="font-display text-lg text-amber-50">AI Mentor</p>
+                <p className="text-xs text-amber-100/60">LPU Explorer</p>
+              </div>
             </Link>
-            <span className="hidden text-xs uppercase tracking-[0.3em] text-amber-300/70 md:inline">
-              LPU Explorer
-            </span>
           </div>
           <nav className="hidden flex-wrap gap-4 text-sm text-amber-100/80 lg:flex">
             {navItems.map((item) => (
