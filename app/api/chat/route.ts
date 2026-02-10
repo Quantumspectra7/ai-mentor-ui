@@ -1,10 +1,6 @@
 import Groq from 'groq-sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
-
 const MENTOR_SYSTEM_PROMPT = `You are an empathetic, supportive AI mentor for college freshers navigating their first 90 days. Your role is to:
 
 1. Provide guidance on academics, campus life, social connections, and personal growth
@@ -38,6 +34,11 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Initialize Groq client at runtime, not at module load
+    const groq = new Groq({
+      apiKey: process.env.GROQ_API_KEY,
+    });
 
     // Enhance the user message with context about mood and day
     let moodContext = '';
