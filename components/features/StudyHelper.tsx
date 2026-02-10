@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { ArrowLeft, BookOpen, Zap, Lightbulb, Target } from 'lucide-react';
 import { studyResources } from '@/lib/phaseData';
 
@@ -74,12 +72,12 @@ export function StudyHelper({ onBack }: StudyHelperProps) {
             <div className="space-y-3">
               {subject.topics.map((topic, index) => (
                 <div key={index} className="glass rounded-2xl p-5 hover:border-primary/40 smooth-transition group">
-                  <div className="flex items-start gap-4 bg-color #f7c473b8">
+                  <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm font-semibold group-hover:bg-primary/30 smooth-transition">
                       {index + 1}
                     </div>
                     <div className="flex-1">
-                      <h4 className="display:flex font-medium text-white group-hover:text-primary smooth-transition">{topic.name}</h4>
+                      <h4 className="font-medium text-white group-hover:text-primary smooth-transition">{topic.name}</h4>
                       <div className="flex gap-3 mt-3 text-xs">
                         <span className="px-3 py-1 rounded-full bg-secondary/20 text-secondary font-medium">
                           {topic.difficulty}

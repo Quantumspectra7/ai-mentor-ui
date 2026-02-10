@@ -10,6 +10,7 @@ import { SeniorComments } from '@/components/features/SeniorComments';
 import { BranchExplorer } from '@/components/features/BranchExplorer';
 import { ExpectationVsReality } from '@/components/features/ExpectationVsReality';
 import { Procedures } from '@/components/features/Procedures';
+import { StudyResources } from '@/components/features/StudyResources';
 import { UserType } from '@/lib/lpuData';
 
 type AppState = 'landing' | 'lpu-explorer' | 'lpu-module' | 'onboarding' | 'dashboard';
@@ -51,9 +52,6 @@ export default function Page() {
     if (userType === 'fresher') {
       // Go to 90-day mentor flow
       setAppState('onboarding');
-    } else {
-      // Go to LPU Explorer modules
-      setAppState('lpu-module');
     }
   };
 
@@ -110,6 +108,8 @@ export default function Page() {
         return <ExpectationVsReality onBack={handleBackToExplorer} />;
       case 'branch-explorer':
         return <BranchExplorer onBack={handleBackToExplorer} />;
+      case 'resources':
+        return <StudyResources onBack={handleBackToExplorer} />;
       default:
         return <LPUExplorer onSelectUserType={handleSelectUserType} onNavigateToModule={handleNavigateToModule} />;
     }

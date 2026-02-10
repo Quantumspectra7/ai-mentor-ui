@@ -1,21 +1,21 @@
 import React from "react"
 import type { Metadata, Viewport } from 'next'
-import { Space_Grotesk, Inter } from 'next/font/google'
+import { Playfair_Display, Manrope } from 'next/font/google'
 
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-context'
 import { ThemeWrapper } from '@/components/theme-wrapper'
 
-const spaceGrotesk = Space_Grotesk({ 
+const playfair = Playfair_Display({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--font-space-grotesk'
+  variable: '--font-display'
 })
 
-const inter = Inter({ 
+const manrope = Manrope({
   weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--font-inter'
+  variable: '--font-body'
 })
 
 export const metadata: Metadata = {
@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} dark`}>
+    <html lang="en" className={`${playfair.variable} ${manrope.variable} dark`}>
       <body className="font-sans antialiased bg-background text-foreground">
         <ThemeProvider>
           <ThemeWrapper>

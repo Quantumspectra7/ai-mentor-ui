@@ -1,18 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
+import { useMemo, useState } from 'react';
 import { getPhaseNumber, phaseTitles, phaseDescriptions, randomSeniorTip, motivationalQuotes } from '@/lib/phaseData';
 import { MentorChat } from '@/components/features/MentorChat';
 import { DailyTasks } from '@/components/features/DailyTasks';
 import { CampusGuide } from '@/components/features/CampusGuide';
 import { StudyHelper } from '@/components/features/StudyHelper';
 import { PanicButton } from '@/components/features/PanicButton';
-import { GlowingCard, AnimatedCard } from '@/components/ui/animated-components';
-import { MessageCircle, CheckCircle2, MapPin, BookMarked, ChevronLeft, ChevronRight, Zap, Trophy, Sparkles, Flame, Users, Brain } from 'lucide-react';
+import { GlowingCard } from '@/components/ui/animated-components';
+import { CheckCircle2, MapPin, BookMarked, ChevronLeft, ChevronRight, Zap, Sparkles, Flame, Users, Brain } from 'lucide-react';
 
 interface DashboardScreenProps {
   currentDay: number;
@@ -33,8 +29,11 @@ export function DashboardScreen({
   const [activeTab, setActiveTab] = useState<'dashboard' | 'chat' | 'tasks' | 'campus' | 'study'>('dashboard');
   const phase = getPhaseNumber(currentDay);
   const progressPercent = (currentDay / 90) * 100;
-  const tip = randomSeniorTip();
-  const quote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+  const tip = useMemo(() => randomSeniorTip(), [currentDay]);
+  const quote = useMemo(
+    () => motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)],
+    [currentDay]
+  );
 
   const handleNextDay = () => {
     if (currentDay < 90) {
@@ -197,6 +196,19 @@ export function DashboardScreen({
               <p className="text-xs dark:text-gray-300 text-slate-600">Explore & navigate</p>
               <div className="mt-4 flex items-center dark:text-pink-300 text-pink-600 text-xs font-semibold opacity-0 group-hover/card:opacity-100 smooth-transition-fast gap-1">
                 Explore <ChevronRight className="w-3 h-3" />
+              </div>
+            </div>
+          </button>
+
+          {/* Study Card */}
+          <button
+            onClick={() => setActiveTab('study')}
+            className="relative group/card rounded-2xl p-6 text-left smooth-transition hover:-translate-y-1 dark:bg-slate-900/50 dark:border dark:border-slate-700/50 dark:hover:border-cyan-500/50 bg-white/50 border border-slate-200/50 hover:border-cyan-400"
+          >
+            <div className="absolute inset-0 rounded-2xl dark:bg-gradient-to-br dark:from-cyan-500/10 dark:to-transparent from-cyan-500/5 to-transparent opacity-0 group-hover/card:opacity-100 smooth-transition"></div>
+            <div className="relative z-10">
+              <div className="mb-4 inline-block p-3 rounded-2xl dark:bg-gradient-to-br dark:from-cyan-500/20 dark:to-cyan-500/5 bg-cyan-500/10 group-hover/card:from-cyan-500/30 group-hover/card:to-cyan-500/15 smooth-transition">
+                <BookMarked className="w-6 h-6 dark:text-cyan-300 text-cyan-600" />
               </div>
               <h3 className="font-bold dark:text-white text-slate-900 mb-2 group-hover/card:dark:text-cyan-300 group-hover/card:text-cyan-600 smooth-transition">Study Hub</h3>
               <p className="text-xs dark:text-gray-300 text-slate-600">Learn & succeed</p>

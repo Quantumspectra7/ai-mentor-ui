@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -48,12 +49,12 @@ export function LandingScreen({ onStart }: LandingScreenProps) {
 
   if (!showOnboarding) {
     return (
-      <div className="min-h-screen relative overflow-hidden dark:bg-gradient-to-br dark:from-slate-950 dark:to-slate-900 bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="min-h-screen relative overflow-hidden grain-overlay">
         {/* Background gradient orbs */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br dark:from-purple-500/20 dark:to-purple-500/0 from-purple-500/10 to-purple-500/0 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-tl dark:from-blue-500/20 dark:to-blue-500/0 from-blue-500/10 to-blue-500/0 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-t dark:from-pink-500/15 dark:to-pink-500/0 from-pink-500/5 to-pink-500/0 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-amber-400/15 to-amber-400/0 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-tl from-teal-400/15 to-teal-400/0 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-t from-rose-400/10 to-rose-400/0 rounded-full blur-3xl"></div>
         </div>
 
         {/* Animated grid background */}
@@ -74,19 +75,19 @@ export function LandingScreen({ onStart }: LandingScreenProps) {
             {/* Hero Section */}
             <div className="text-center space-y-8 mb-20">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full dark:bg-purple-500/20 dark:border-purple-500/30 bg-purple-500/10 border border-purple-500/20">
-                <Sparkles className="w-4 h-4 dark:text-purple-300 text-purple-600" />
-                <span className="text-xs font-semibold dark:text-purple-200 text-purple-700">Introducing Your AI Mentor</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/30 bg-black/40">
+                <Sparkles className="w-4 h-4 text-amber-300" />
+                <span className="text-xs font-semibold text-amber-100">Introducing Your AI Mentor</span>
               </div>
 
               {/* Main Heading */}
               <div className="space-y-4">
-                <h1 className="text-5xl md:text-7xl font-bold text-balance leading-tight">
-                  <span className="dark:text-white text-slate-900">Master Your</span>
+                <h1 className="font-display hero-title text-5xl md:text-7xl text-balance leading-tight text-amber-50">
+                  <span>Master Your</span>
                   <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r dark:from-purple-400 dark:via-pink-400 dark:to-blue-400 from-purple-600 via-pink-600 to-blue-600">First 90 Days</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-rose-300 to-teal-300">First 90 Days</span>
                 </h1>
-                <p className="text-base md:text-lg dark:text-gray-300 text-slate-600 max-w-2xl mx-auto leading-relaxed font-light">
+                <p className="text-base md:text-lg text-amber-100/70 max-w-2xl mx-auto leading-relaxed font-light">
                   Your personal AI mentor guides you through campus life with real advice, daily tasks, and emotional support. From orientation to confidence, we've got you covered.
                 </p>
               </div>
@@ -95,46 +96,52 @@ export function LandingScreen({ onStart }: LandingScreenProps) {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
                 {/* Feature 1 */}
                 <GlowingCard glow="purple">
-                  <div className="mb-4 inline-flex p-3 rounded-2xl dark:bg-gradient-to-br dark:from-purple-500/30 dark:to-purple-500/10 bg-purple-500/20">
-                    <Brain className="w-6 h-6 dark:text-purple-300 text-purple-600" />
+                  <div className="mb-4 inline-flex p-3 rounded-2xl bg-amber-500/20">
+                    <Brain className="w-6 h-6 text-amber-300" />
                   </div>
-                  <h3 className="text-lg font-semibold dark:text-white text-slate-900 mb-2">AI Mentor Chat</h3>
-                  <p className="text-sm dark:text-gray-300 text-slate-600">Get instant personalized advice on academics, campus life, and personal growth</p>
+                  <h3 className="text-lg font-semibold text-amber-50 mb-2">AI Mentor Chat</h3>
+                  <p className="text-sm text-amber-100/70">Get instant personalized advice on academics, campus life, and personal growth</p>
                 </GlowingCard>
 
                 {/* Feature 2 */}
                 <GlowingCard glow="blue">
-                  <div className="mb-4 inline-flex p-3 rounded-2xl dark:bg-gradient-to-br dark:from-blue-500/30 dark:to-blue-500/10 bg-blue-500/20">
-                    <BookOpen className="w-6 h-6 dark:text-blue-300 text-blue-600" />
+                  <div className="mb-4 inline-flex p-3 rounded-2xl bg-teal-500/20">
+                    <BookOpen className="w-6 h-6 text-teal-200" />
                   </div>
-                  <h3 className="text-lg font-semibold dark:text-white text-slate-900 mb-2">Campus & Study Hub</h3>
-                  <p className="text-sm dark:text-gray-300 text-slate-600">Navigate campus, find resources, and discover how to excel in your studies</p>
+                  <h3 className="text-lg font-semibold text-amber-50 mb-2">Campus & Study Hub</h3>
+                  <p className="text-sm text-amber-100/70">Navigate campus, find resources, and discover how to excel in your studies</p>
                 </GlowingCard>
 
                 {/* Feature 3 */}
                 <GlowingCard glow="pink">
-                  <div className="mb-4 inline-flex p-3 rounded-2xl dark:bg-gradient-to-br dark:from-pink-500/30 dark:to-pink-500/10 bg-pink-500/20">
-                    <TrendingUp className="w-6 h-6 dark:text-pink-300 text-pink-600" />
+                  <div className="mb-4 inline-flex p-3 rounded-2xl bg-rose-500/20">
+                    <TrendingUp className="w-6 h-6 text-rose-200" />
                   </div>
-                  <h3 className="text-lg font-semibold dark:text-white text-slate-900 mb-2">Progress & Growth</h3>
-                  <p className="text-sm dark:text-gray-300 text-slate-600">Track daily milestones and celebrate your journey from day 1 to day 90</p>
+                  <h3 className="text-lg font-semibold text-amber-50 mb-2">Progress & Growth</h3>
+                  <p className="text-sm text-amber-100/70">Track daily milestones and celebrate your journey from day 1 to day 90</p>
                 </GlowingCard>
               </div>
 
               {/* CTA Button */}
-              <div className="pt-8">
+              <div className="pt-8 flex flex-wrap items-center justify-center gap-4">
                 <button
                   onClick={() => setShowOnboarding(true)}
-                  className="btn-gradient inline-flex items-center gap-3 text-lg group px-8 py-4 rounded-2xl hover-lift-sm"
+                  className="inline-flex items-center gap-3 text-lg group px-8 py-4 rounded-2xl bg-amber-500 text-black hover:bg-amber-400 smooth-transition"
                 >
                   <Zap className="w-5 h-5" />
                   Start Your 90-Day Journey
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 smooth-transition" />
                 </button>
+                <Link
+                  href="/lpu"
+                  className="inline-flex items-center gap-3 text-lg px-8 py-4 rounded-2xl border border-amber-500/40 text-amber-100 hover:border-amber-400 smooth-transition"
+                >
+                  Explore LPU Ecosystem
+                </Link>
               </div>
 
               {/* Sign-off */}
-              <p className="text-xs dark:text-gray-400 text-slate-500 pt-4">
+              <p className="text-xs text-amber-200/70 pt-4">
                 ✨ No credit card required • All data saved locally • No tracking
               </p>
             </div>

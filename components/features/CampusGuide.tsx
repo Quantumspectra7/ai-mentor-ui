@@ -1,9 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { ArrowLeft, MapPin, Navigation, Search, Info } from 'lucide-react';
+import { ArrowLeft, MapPin, Navigation } from 'lucide-react';
 import { campusGuide } from '@/lib/phaseData';
 
 interface CampusGuideProps {
@@ -12,6 +10,7 @@ interface CampusGuideProps {
 
 export function CampusGuide({ onBack }: CampusGuideProps) {
   const [activeTab, setActiveTab] = useState<'buildings' | 'facilities' | 'resources'>('buildings');
+  const tabs: Array<typeof activeTab> = ['buildings', 'facilities', 'resources'];
 
   const renderItems = () => {
     const items = campusGuide[activeTab];
@@ -61,10 +60,10 @@ export function CampusGuide({ onBack }: CampusGuideProps) {
       <main className="relative z-10 max-w-4xl mx-auto px-4 py-12">
         {/* Tabs */}
         <div className="flex gap-3 mb-10 flex-wrap animate-fade-up">
-          {['buildings', 'facilities', 'resources'].map(tab => (
+          {tabs.map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab as any)}
+              onClick={() => setActiveTab(tab)}
               className={`px-4 py-2 rounded-xl font-medium smooth-transition capitalize ${
                 activeTab === tab
                   ? 'btn-gradient text-white'

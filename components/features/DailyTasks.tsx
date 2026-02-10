@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Checkbox } from '@/components/ui/checkbox';
+import { useMemo, useState, useEffect } from 'react';
 import { ArrowLeft, Flame, Star, Zap, CheckCircle2, Trophy } from 'lucide-react';
 import { dailyTasksByPhase } from '@/lib/phaseData';
 
@@ -36,8 +35,10 @@ export function DailyTasks({ currentDay, onBack }: DailyTasksProps) {
     if (saved) setCompletedTasks(JSON.parse(saved));
   }, [currentDay]);
 
-  const dayTasks = dailyTasksByPhase[phase];
-  const selectedTasks = dayTasks.slice(0, 3); 
+  const selectedTasks = useMemo(() => {
+    const dayTasks = dailyTasksByPhase[phase];
+    return dayTasks.slice(0, 3);
+  }, [phase]);
 
   const toggleTask = (index: number) => {
     const taskId = `${currentDay}-${index}`;
@@ -48,7 +49,9 @@ export function DailyTasks({ currentDay, onBack }: DailyTasksProps) {
     localStorage.setItem(`tasksDay${currentDay}`, JSON.stringify(updated));
   };
 
-  const completionPercent = (completedTasks.length / selectedTasks.length) * 100;
+  const completionPercent = selectedTasks.length
+    ? (completedTasks.length / selectedTasks.length) * 100
+    : 0;
 
   return (
     <div className="min-h-screen bg-background relative">

@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { branchInfo, branchQuiz } from '@/lib/lpuData';
-import { BarChart3, TrendingUp, Users } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 
 interface BranchExplorerProps {
   onBack?: () => void;
@@ -36,8 +36,7 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
     : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 to-slate-900 py-12">
-      <div className="container mx-auto px-4">
+    <div className="space-y-10">
         {/* Header */}
         <div className="mb-12">
           {onBack && (
@@ -45,14 +44,15 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
               ← Back
             </Button>
           )}
-          <h1 className="text-4xl font-bold text-white mb-2">🧭 Branch Explorer</h1>
-          <p className="text-slate-400">
+          <p className="eyebrow text-xs text-amber-300">Branch Explorer</p>
+          <h1 className="font-display hero-title text-4xl text-amber-50 mb-2 md:text-5xl">🧭 Branch Explorer</h1>
+          <p className="text-amber-100/70">
             Explore careers, placements, and reality of each branch at LPU
           </p>
 
           <Button
             onClick={() => setShowQuiz(true)}
-            className="mt-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+            className="mt-4 bg-amber-500 text-black hover:bg-amber-400"
           >
             🎯 Take "Is This Branch For You?" Quiz
           </Button>
@@ -64,28 +64,28 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
             {branchInfo.map((branch) => (
               <Card
                 key={branch.id}
-                className="cursor-pointer border-slate-700 hover:border-purple-500 transition-all hover:scale-105 overflow-hidden group"
+                className="cursor-pointer transition-all hover:scale-[1.02] overflow-hidden group luxe-card"
                 onClick={() => setSelectedBranch(branch.id)}
               >
-                <div className="h-1 bg-gradient-to-r from-purple-500 to-blue-500" />
+                <div className="h-1 bg-gradient-to-r from-amber-500 to-teal-500" />
                 <CardHeader>
-                  <CardTitle className="text-2xl text-white">{branch.name}</CardTitle>
-                  <p className="text-sm text-slate-400 mt-2">{branch.description}</p>
+                  <CardTitle className="font-display text-2xl text-amber-50">{branch.name}</CardTitle>
+                  <p className="text-sm text-amber-100/70 mt-2">{branch.description}</p>
                 </CardHeader>
 
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-400 text-sm">📊 Placement Rate</span>
-                      <span className="font-bold text-green-400">{branch.placementRate}%</span>
+                      <span className="text-amber-100/60 text-sm">📊 Placement Rate</span>
+                      <span className="font-bold text-emerald-300">{branch.placementRate}%</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-400 text-sm">💰 Avg Package</span>
-                      <span className="font-bold text-yellow-400">₹{branch.avgPackage} LPA</span>
+                      <span className="text-amber-100/60 text-sm">💰 Avg Package</span>
+                      <span className="font-bold text-amber-300">₹{branch.avgPackage} LPA</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-400 text-sm">🏢 Top Recruiters</span>
-                      <span className="text-xs text-slate-300">
+                      <span className="text-amber-100/60 text-sm">🏢 Top Recruiters</span>
+                      <span className="text-xs text-amber-100/70">
                         {branch.topRecruiters[0]}, {branch.topRecruiters[1]}...
                       </span>
                     </div>
@@ -94,7 +94,7 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
                   <Button
                     fullWidth
                     variant="outline"
-                    className="w-full mt-4 border-purple-500 text-purple-400 hover:bg-purple-500/10"
+                    className="w-full mt-4 border-amber-500/40 text-amber-100 hover:bg-amber-500/10"
                   >
                     Learn More →
                   </Button>
@@ -113,14 +113,14 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
               ← Back to Branches
             </Button>
 
-            <Card className="border-purple-500/30 bg-slate-900/50 mb-8">
+            <Card className="luxe-card border-amber-500/30 mb-8">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle className="text-3xl text-white mb-2">
+                    <CardTitle className="font-display text-3xl text-amber-50 mb-2">
                       {displayBranch?.name}
                     </CardTitle>
-                    <p className="text-slate-400">{displayBranch?.description}</p>
+                    <p className="text-amber-100/70">{displayBranch?.description}</p>
                   </div>
                 </div>
               </CardHeader>
@@ -128,21 +128,21 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
               <CardContent className="space-y-8">
                 {/* Key Stats */}
                 <div className="grid md:grid-cols-3 gap-4">
-                  <div className="p-4 rounded-lg bg-slate-800 border border-green-500/30">
-                    <p className="text-sm text-slate-400 mb-1">📊 Placement Rate</p>
-                    <p className="text-3xl font-bold text-green-400">
+                  <div className="p-4 rounded-2xl bg-black/30 border border-emerald-500/30">
+                    <p className="text-sm text-amber-100/60 mb-1">📊 Placement Rate</p>
+                    <p className="text-3xl font-bold text-emerald-300">
                       {displayBranch?.placementRate}%
                     </p>
                   </div>
-                  <div className="p-4 rounded-lg bg-slate-800 border border-yellow-500/30">
-                    <p className="text-sm text-slate-400 mb-1">💰 Average Package</p>
-                    <p className="text-3xl font-bold text-yellow-400">
+                  <div className="p-4 rounded-2xl bg-black/30 border border-amber-500/30">
+                    <p className="text-sm text-amber-100/60 mb-1">💰 Average Package</p>
+                    <p className="text-3xl font-bold text-amber-300">
                       ₹{displayBranch?.avgPackage} LPA
                     </p>
                   </div>
-                  <div className="p-4 rounded-lg bg-slate-800 border border-blue-500/30">
-                    <p className="text-sm text-slate-400 mb-1">🎯 Career Paths</p>
-                    <p className="text-lg font-bold text-blue-400">
+                  <div className="p-4 rounded-2xl bg-black/30 border border-teal-500/30">
+                    <p className="text-sm text-amber-100/60 mb-1">🎯 Career Paths</p>
+                    <p className="text-lg font-bold text-teal-200">
                       {displayBranch?.careerPaths.length} Options
                     </p>
                   </div>
@@ -150,10 +150,10 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
 
                 {/* Subjects */}
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-3">📚 Core Subjects</h3>
+                  <h3 className="font-display text-xl text-amber-50 mb-3">📚 Core Subjects</h3>
                   <div className="flex flex-wrap gap-2">
                     {displayBranch?.subjects.map((subject) => (
-                      <Badge key={subject} className="bg-purple-600/50">
+                      <Badge key={subject} className="bg-amber-500/20 text-amber-100 border border-amber-500/30">
                         {subject}
                       </Badge>
                     ))}
@@ -162,14 +162,14 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
 
                 {/* Top Recruiters */}
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-3">🏢 Top Recruiters</h3>
+                  <h3 className="font-display text-xl text-amber-50 mb-3">🏢 Top Recruiters</h3>
                   <div className="grid md:grid-cols-3 gap-2">
                     {displayBranch?.topRecruiters.map((recruiter) => (
                       <div
                         key={recruiter}
-                        className="p-3 rounded bg-slate-800 border border-blue-500/30 text-center"
+                        className="p-3 rounded-2xl bg-black/30 border border-teal-500/30 text-center"
                       >
-                        <p className="text-white font-semibold">{recruiter}</p>
+                        <p className="text-amber-50 font-semibold">{recruiter}</p>
                       </div>
                     ))}
                   </div>
@@ -177,14 +177,14 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
 
                 {/* Career Paths */}
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-3">🚀 Career Paths</h3>
+                  <h3 className="font-display text-xl text-amber-50 mb-3">🚀 Career Paths</h3>
                   <div className="space-y-2">
                     {displayBranch?.careerPaths.map((path) => (
                       <div
                         key={path}
-                        className="p-3 rounded bg-slate-800 border border-green-500/30 text-slate-200 flex items-center gap-2"
+                        className="p-3 rounded-2xl bg-black/30 border border-emerald-500/30 text-amber-100/80 flex items-center gap-2"
                       >
-                        <TrendingUp className="w-4 h-4 text-green-400" />
+                        <TrendingUp className="w-4 h-4 text-emerald-300" />
                         {path}
                       </div>
                     ))}
@@ -193,12 +193,12 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
 
                 {/* Is This For You */}
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-3">✅ Is This for You?</h3>
+                  <h3 className="font-display text-xl text-amber-50 mb-3">✅ Is This for You?</h3>
                   <div className="space-y-2">
                     {displayBranch?.isForYou.map((reason) => (
                       <div
                         key={reason}
-                        className="p-2 rounded bg-green-500/10 border border-green-500/30 text-green-300 text-sm"
+                        className="p-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-sm"
                       >
                         ✓ {reason}
                       </div>
@@ -208,12 +208,12 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
 
                 {/* Need Urgently */}
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-3">🎯 You Need Urgently</h3>
+                  <h3 className="font-display text-xl text-amber-50 mb-3">🎯 You Need Urgently</h3>
                   <div className="space-y-2">
                     {displayBranch?.needUrgently.map((need) => (
                       <div
                         key={need}
-                        className="p-2 rounded bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-sm"
+                        className="p-2 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-sm"
                       >
                         ⚡ {need}
                       </div>
@@ -222,9 +222,9 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
                 </div>
 
                 {/* Senior Advice */}
-                <div className="bg-slate-800/50 border-l-4 border-purple-500 p-4 rounded">
-                  <p className="text-sm text-slate-400 mb-2">💬 Senior Advice:</p>
-                  <p className="text-white italic">"{displayBranch?.seniorAdvice}"</p>
+                <div className="bg-black/30 border-l-4 border-amber-500 p-4 rounded-2xl">
+                  <p className="text-sm text-amber-100/60 mb-2">💬 Senior Advice:</p>
+                  <p className="text-amber-50 italic">"{displayBranch?.seniorAdvice}"</p>
                 </div>
               </CardContent>
             </Card>
@@ -233,24 +233,23 @@ export function BranchExplorer({ onBack }: BranchExplorerProps) {
 
         {/* Quiz CTA */}
         {!showQuiz && !displayBranch && (
-          <Card className="border-purple-500/30 bg-gradient-to-r from-purple-900/20 to-blue-900/20">
+          <Card className="luxe-card border-amber-500/30">
             <CardHeader>
-              <CardTitle className="text-white">🤔 Still Can't Decide?</CardTitle>
+              <CardTitle className="font-display text-2xl text-amber-50">🤔 Still Can't Decide?</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-slate-300 mb-4">
+              <p className="text-amber-100/70 mb-4">
                 Take our interactive quiz to find out which branch matches your interests, skills, and career goals.
               </p>
               <Button
                 onClick={() => setShowQuiz(true)}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                className="bg-amber-500 text-black hover:bg-amber-400"
               >
                 🎯 Start Quiz (2 min)
               </Button>
             </CardContent>
           </Card>
         )}
-      </div>
     </div>
   );
 }
@@ -289,46 +288,44 @@ function BranchQuiz({
   const question = branchQuiz[currentQ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 to-slate-900 py-12">
-      <div className="container mx-auto px-4 max-w-2xl">
-        <Button variant="outline" className="mb-8" onClick={onBack}>
-          ← Back
-        </Button>
+    <div className="space-y-10 max-w-2xl">
+      <Button variant="outline" className="mb-2" onClick={onBack}>
+        ← Back
+      </Button>
 
-        <Card className="border-purple-500/30 bg-slate-900/50">
-          <CardHeader>
-            <div className="mb-4">
-              <p className="text-purple-400 font-semibold">Question {currentQ + 1} of {branchQuiz.length}</p>
-              <div className="w-full bg-slate-800 rounded-full h-2 mt-2">
-                <div
-                  className="bg-purple-600 h-2 rounded-full transition-all"
-                  style={{ width: `${((currentQ + 1) / branchQuiz.length) * 100}%` }}
-                />
-              </div>
+      <Card className="luxe-card border-amber-500/30">
+        <CardHeader>
+          <div className="mb-4">
+            <p className="text-amber-200 font-semibold">Question {currentQ + 1} of {branchQuiz.length}</p>
+            <div className="w-full bg-black/40 rounded-full h-2 mt-2">
+              <div
+                className="bg-amber-500 h-2 rounded-full transition-all"
+                style={{ width: `${((currentQ + 1) / branchQuiz.length) * 100}%` }}
+              />
             </div>
-            <CardTitle className="text-2xl text-white">{question.question}</CardTitle>
-          </CardHeader>
+          </div>
+          <CardTitle className="font-display text-2xl text-amber-50">{question.question}</CardTitle>
+        </CardHeader>
 
-          <CardContent>
-            <div className="space-y-3">
-              {question.options.map((option, idx) => (
-                <Button
-                  key={idx}
-                  onClick={() => handleAnswer(option.branch)}
-                  variant="outline"
-                  className="w-full justify-start h-auto py-4 px-6 border-slate-700 hover:border-purple-500 hover:bg-purple-500/10 text-left"
-                >
-                  <span className="text-lg">{option.text}</span>
-                </Button>
-              ))}
-            </div>
+        <CardContent>
+          <div className="space-y-3">
+            {question.options.map((option, idx) => (
+              <Button
+                key={idx}
+                onClick={() => handleAnswer(option.branch)}
+                variant="outline"
+                className="w-full justify-start h-auto py-4 px-6 border-amber-500/30 hover:border-amber-400 hover:bg-amber-500/10 text-left text-amber-100"
+              >
+                <span className="text-lg">{option.text}</span>
+              </Button>
+            ))}
+          </div>
 
-            <p className="text-xs text-slate-400 mt-8 text-center">
-              Your answers help us recommend the best branch for you
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+          <p className="text-xs text-amber-100/60 mt-8 text-center">
+            Your answers help us recommend the best branch for you
+          </p>
+        </CardContent>
+      </Card>
     </div>
   );
 }
